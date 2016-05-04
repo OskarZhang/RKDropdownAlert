@@ -1,3 +1,8 @@
+Fork Note:
+======================
+This fork is a fix for [this issue](https://github.com/cwRichardKim/RKDropdownAlert/issues/23) in the original repo.
+
+
 RKDropdownAlert
 ======================
 
