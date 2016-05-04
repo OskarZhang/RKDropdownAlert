@@ -75,10 +75,20 @@ NSString *DEFAULT_TITLE;
                                                      name:RKDropdownAlertDismissAllNotification
                                                    object:nil];
         self.isShowing = NO;
-
+        //Start:
+        UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap)];
+        [self addGestureRecognizer:tapGesture];
+        //End: code added by Hawkable
+        
     }
     return self;
 }
+
+//Start:
+- (void)didTap {
+    [self performSelector:@selector(viewWasTapped:) withObject:self ];
+}
+//End: function added by Hawkable
 
 - (void)dismissAlertView {
     [self hideView:self];
@@ -245,7 +255,7 @@ NSString *DEFAULT_TITLE;
     NSInteger time = seconds;
     titleLabel.text = title;
     
-    if (message && message.length > 0) {
+    if (message) {
         messageLabel.text = message;
         if ([self messageTextIsOneLine]) {
             CGRect frame = titleLabel.frame;
@@ -289,7 +299,11 @@ NSString *DEFAULT_TITLE;
         self.frame = frame;
     }];
     
-    [self performSelector:@selector(viewWasTapped:) withObject:self afterDelay:time+ANIMATION_TIME];
+    
+    //Line Commented out by Hawkable
+    //    [self performSelector:@selector(viewWasTapped:) withObject:self afterDelay:time+ANIMATION_TIME];
+    //Line added by Hawkable
+    [self performSelector:@selector(hideView:) withObject:self afterDelay:time+ ANIMATION_TIME];
 }
 
 
